@@ -1,0 +1,91 @@
+# phase: 'train'
+phase: 'test'
+load_yaml: True
+epochs: 50
+gpu: '0'
+# dataset_name: 'ZeroDose'
+dataset_name: 'BraTS'                                               #
+# dataset_name: 'NCANDA'
+# dataset_name: 'All'
+# contrast_list: ['T1', 'T2_FLAIR']                                 #
+# contrast_list: ['T1', 'T2']
+contrast_list: ['T1', 'T1c', 'T2', 'T2_FLAIR']
+norm_type: 'z-score'                                                #
+# norm_type: 'mean'
+block_size: 3
+data_path: '../data/'
+batch_size: 8
+num_fold: 5
+fold: 0
+shuffle: True
+lr: 0.0002
+model_name: 'MultimodalModel'
+p: 1
+s_num_ch: 4                                                         #
+z_size: 16
+
+lambda_recon_y: 0.                                                   #
+lambda_recon_y_fused: 0.                                             #
+lambda_recon_x: 1.0
+lambda_recon_x_mix: 2.0
+# lambda_sim_s: 1.
+lambda_sim_s: 10.0
+lambda_sim_z: 2.0
+
+s_compact_method: 'max'
+# s_compact_method: 'mean'
+# s_compact_method: 'vgg'
+s_sim_method: 'cosine'
+# s_sim_method: 'perceptual'
+z_sim_method: 'cosine'
+# z_sim_method: 'mse'
+
+
+# lambda_sim_s: 0.
+# lambda_sim_z: 0.
+
+# lambda_recon_y: 1.                                                   #
+# lambda_recon_y_fused: 2.                                             #
+# lambda_recon_x: 0.
+# lambda_recon_x_mix: 0.
+# lambda_sim_s: 0.
+# lambda_sim_z: 0.
+
+lambda_kl: 0.
+lambda_latent_z: 0.1
+lambda_adv_s: 0.
+
+is_cond: True
+# is_cond: False
+is_distri_z: False
+# is_distri_z: True
+shared_ana_enc: True
+# shared_ana_enc: False                                                  #
+shared_mod_enc: True
+# shared_inp_dec: True
+shared_inp_dec: False
+# others: {'mod_enc_s': True, 'ana_dec_act': 'softmax', 'old': False}
+others: {'mod_enc_s': False, 'ana_dec_act': 'softmax', 'old': False, 'softmax_remove_mask': True}    #
+# others: {'mod_enc_s': False, 'ana_dec_act': 'softplus', 'old': False}
+# others: {'mod_enc_s': True, 'ana_dec_act': 'softplus', 'old': False}
+
+# out_num_ch: 4                                                          #
+out_num_ch: 1
+input_height: 160
+input_width: 192
+dropoff: False
+skull_strip: False
+fuse_method: 'mean'                                                    #
+# fuse_method: 'mean-max-min'                                                    #
+# target_model_name: 'U+SSA'
+# target_model_name: 'U'                                                 #
+target_model_name: 'U+SA'
+
+continue_train: False                                                  #
+# continue_train: True
+fix_pretrain: False                                                     #
+# fix_pretrain: True
+ckpt_name: 'model_best.pth.tar'                                        #
+# ckpt_name: 'model_best_pretrained.pth.tar'  # only for pretrain
+
+ckpt_timelabel: '2020_12_3_17_55'                                     #
